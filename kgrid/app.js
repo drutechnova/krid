@@ -2,26 +2,36 @@
     var self = this;
 
 
-    self.data = ko.mapping.fromJS(data);
+    //self.data = ko.mapping.fromJS(data);
+    self.data = ko.observableArray();
+
 
     var kridOptions = {
         columns: [
-                    {
-                        fieldName: 'id',
-                        displayText: 'ID'
-                    },
                     {
                         fieldName: 'name',
                         displayText: 'Name'
                     },
                     {
-                        fieldName: 'price',
-                        displayText: 'Price'
+                        fieldName: 'capital',
+                        displayText: 'Capital'
+                    },
+                    {
+                        fieldName: 'population',
+                        displayText: 'Population'
+                    },
+                    {
+                        fieldName: 'subregion',
+                        displayText: 'Subregion'
+                    },
+                    {
+                        fieldName: 'demonym',
+                        displayText: 'Demonym'
                     }
 
         ],
         data: self.data,
-        dataUrl: '/api/',
+        dataUrl: 'http://restcountries.eu/rest/v1/region/africa',
         doGetAll: true,
         sortKeyIndex: 0,
         selectedItem: ko.observable(),

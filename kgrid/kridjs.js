@@ -37,6 +37,21 @@
     self.modalTitle = options.modalTitle;
     self.statuses = ['info', 'active', 'success', 'warning', 'active', 'danger'];
 
+    //Data retrieval
+
+    $.ajax({
+        url: options.dataUrl,
+        dataType: 'json',
+        complete: function () {
+            //  alert(this.url);
+        },
+        success: function (json) {
+            //self.data = ko.mapping.fromJS(json);
+            ko.mapping.fromJS(json, {}, self.data);
+        }
+    });
+
+
     //setting up stuff
     ko.utils.arrayForEach(self.data(), function (item) {
         //item.status = ko.observable();
@@ -93,17 +108,17 @@
     }, 1500);
 
 
-    setTimeout(function () {
-        var temp = ko.observableArray(ko.mapping.fromJS(data2)());
-        //setting up stuff
-        ko.utils.arrayForEach(temp(), function (item) {
-            //item.status = ko.observable();
-            item.isSelected = ko.observable();
-        });
-        self.data(temp());
+    //setTimeout(function () {
+    //    var temp = ko.observableArray(ko.mapping.fromJS(data2)());
+    //    //setting up stuff
+    //    ko.utils.arrayForEach(temp(), function (item) {
+    //        //item.status = ko.observable();
+    //        item.isSelected = ko.observable();
+    //    });
+    //    self.data(temp());
       
 
-    }, 2000);
+    //}, 2000);
 }
 function naturalSorter(as, bs) {
     var a, b, a1, b1, i = 0, n, L,
